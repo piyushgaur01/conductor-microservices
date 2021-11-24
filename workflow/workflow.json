@@ -1,0 +1,43 @@
+POST /api/metadata/workflow HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 928
+
+{
+	"name": "clo_workflow",
+	"description": "Workflow description",
+    "ownerEmail": "abc@xyz.com",
+	"tasks": [{
+			"name": "task_validation",
+			"taskReferenceName": "task_validation",
+			"type": "HTTP",
+			"inputParameters": {
+				"http_request": {
+					"uri": "http://localhost:3001/users/validate",
+					"method": "POST",
+					"contentType": "application/json",
+					"body": "${workflow.input}"
+				}
+			}
+		},
+		{
+			"name": "task_offer_lookup",
+			"taskReferenceName": "task_offer_lookup",
+			"type": "HTTP",
+			"inputParameters": {
+				"http_request": {
+					"uri": "http://localhost:3002/offer-lookup",
+					"method": "POST",
+					"contentType": "application/json",
+					"body": "${task_validation.output.response.body}"
+				}
+			}
+		}
+	],
+	"outputParameters": {
+		"final_result": "${task_offer_lookup.output.response.body}"
+	},
+	"restartable": true,
+	"workflowStatusListenerEnabled": true,
+	"schemaVersion": 2
+}

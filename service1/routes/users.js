@@ -22,10 +22,13 @@ router.post('/validate', async (req, res) => {
       last_name: body.last_name,
       ssn: body.ssn
     });
-    res.send('SUCCESS');
+    console.log(value);
+    res.send(value);
   }
   catch (err) {
-    res.status(400).send(`Validation Error: ${err.message}`);
+    res.status(400).send({
+      result: false
+    });
   }
 });
 

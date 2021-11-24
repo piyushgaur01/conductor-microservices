@@ -1,0 +1,37 @@
+POST /api/metadata/taskdefs HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 921
+
+[
+    {
+        "name": "task_validation",
+        "ownerEmail": "abc@xyz.com",
+        "http_request": {
+            "uri": "http://localhost:3001/users/validate",
+            "method": "POST",
+            "accept": "text/plain",
+            "contentType": "application/json",
+            "body": {
+                "first_name": "Vida",
+                "last_name": "Corneck",
+                "ssn": "615-39-0506"
+            }
+        }
+    },
+    {
+        "name": "task_offer_lookup",
+        "ownerEmail": "abc@xyz.com",
+        "http_request": {
+            "uri": "http://localhost:3002/offer-lookup",
+            "method": "POST",
+            "accept": "text/plain",
+            "contentType": "application/json",
+            "body": {
+                "first_name": "Vida",
+                "last_name": "Corneck",
+                "ssn": "615-39-0506"
+            }
+        }
+    }
+]
