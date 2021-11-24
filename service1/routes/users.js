@@ -27,7 +27,7 @@ router.post('/validate', async (req, res) => {
   }
   catch (err) {
     res.status(400).send({
-      result: false
+      result: err.message
     });
   }
 });

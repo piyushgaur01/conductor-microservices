@@ -1,0 +1,10 @@
+POST /api/workflow/clo_workflow HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 86
+
+{
+    "first_name": "Vida",
+    "last_name": "Corneck",
+    "ssn": "615-39-0506"
+}
